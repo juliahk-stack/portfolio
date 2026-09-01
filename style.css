@@ -893,10 +893,4 @@ a:hover{
   .loader-mark { font-size: 2.2rem; }
   .photo-info-card { width: 100%; margin-top: -1.25rem; }
   .credential-card, .credentials-detail, .contact-form { padding: 1.75rem; }
-  .WhatsApp{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
 }
