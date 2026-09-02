@@ -156,65 +156,65 @@ document.addEventListener('DOMContentLoaded', () => {
      Client-side only — no backend. Validates required fields,
      shows inline errors, and displays a success message.
   --------------------------------------------------------- */
-  // const form = document.getElementById('contactForm');
-  // const formStatus = document.getElementById('formStatus');
+  const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
 
-  // const validators = {
-  //   fullName: (value) => value.trim().length >= 2 || 'Please enter your full name.',
-  //   email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) || 'Please enter a valid email address.',
-  //   phone: (value) => value.trim() === '' || /^[0-9()+\-.\s]{7,}$/.test(value.trim()) || 'Please enter a valid phone number.',
-  //   subject: (value) => value.trim().length >= 2 || 'Please enter a subject.',
-  //   message: (value) => value.trim().length >= 10 || 'Please enter a message of at least 10 characters.'
-  // };
+  const validators = {
+    fullName: (value) => value.trim().length >= 2 || 'Please enter your full name.',
+    email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) || 'Please enter a valid email address.',
+    phone: (value) => value.trim() === '' || /^[0-9()+\-.\s]{7,}$/.test(value.trim()) || 'Please enter a valid phone number.',
+    subject: (value) => value.trim().length >= 2 || 'Please enter a subject.',
+    message: (value) => value.trim().length >= 10 || 'Please enter a message of at least 10 characters.'
+  };
 
-  // const validateField = (field) => {
-  //   const rule = validators[field.name];
-  //   if (!rule) return true;
+  const validateField = (field) => {
+    const rule = validators[field.name];
+    if (!rule) return true;
 
-  //   const result = rule(field.value);
-  //   const row = field.closest('.form-row');
-  //   const errorEl = document.getElementById(`${field.id}Error`);
+    const result = rule(field.value);
+    const row = field.closest('.form-row');
+    const errorEl = document.getElementById(`${field.id}Error`);
 
-  //   if (result === true) {
-  //     row.classList.remove('has-error');
-  //     errorEl.textContent = '';
-  //     return true;
-  //   }
+    if (result === true) {
+      row.classList.remove('has-error');
+      errorEl.textContent = '';
+      return true;
+    }
 
-  //   row.classList.add('has-error');
-  //   errorEl.textContent = result;
-  //   return false;
-  // };
+    row.classList.add('has-error');
+    errorEl.textContent = result;
+    return false;
+  };
 
-  // // Validate a field as the user leaves it
-  // form.querySelectorAll('input, textarea').forEach((field) => {
-  //   field.addEventListener('blur', () => validateField(field));
-  //   field.addEventListener('input', () => {
-  //     if (field.closest('.form-row').classList.contains('has-error')) {
-  //       validateField(field);
-  //     }
-  //   });
-  // });
+  // Validate a field as the user leaves it
+  form.querySelectorAll('input, textarea').forEach((field) => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      if (field.closest('.form-row').classList.contains('has-error')) {
+        validateField(field);
+      }
+    });
+  });
 
-  // form.addEventListener('submit', (e) => {
-  //   e.preventDefault();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  //   const fields = Array.from(form.querySelectorAll('input, textarea'));
-  //   const results = fields.map((field) => validateField(field));
-  //   const isValid = results.every(Boolean);
+    const fields = Array.from(form.querySelectorAll('input, textarea'));
+    const results = fields.map((field) => validateField(field));
+    const isValid = results.every(Boolean);
 
-  //   if (!isValid) {
-  //     formStatus.textContent = 'Please correct the highlighted fields before submitting.';
-  //     formStatus.className = 'form-status error';
-  //     const firstError = form.querySelector('.form-row.has-error input, .form-row.has-error textarea');
-  //     if (firstError) firstError.focus();
-  //     return;
-  //   }
+    if (!isValid) {
+      formStatus.textContent = 'Please correct the highlighted fields before submitting.';
+      formStatus.className = 'form-status error';
+      const firstError = form.querySelector('.form-row.has-error input, .form-row.has-error textarea');
+      if (firstError) firstError.focus();
+      return;
+    }
 
-  //   // No backend is connected — this simulates a successful submission.
-  //   formStatus.textContent = 'Thank you. Your message has been received and will be reviewed shortly.';
-  //   formStatus.className = 'form-status success';
-  //   form.reset();
-  // });
+    // No backend is connected — this simulates a successful submission.
+    formStatus.textContent = 'Thank you. Your message has been received and will be reviewed shortly.';
+    formStatus.className = 'form-status success';
+    form.reset();
+  });
 
 });
