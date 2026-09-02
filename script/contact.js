@@ -14,7 +14,7 @@ form.addEventListener("submit", function(e){
     const service = document.getElementById("subject").value;
     const message = document.getElementById("message").value.trim();
 
-    if(!name || !email || !phone || !service || !message){
+    if(!name || !email || !phone || !subject || !message){
 
         response.style.color="red";
         response.innerHTML="Please complete all required fields.";
@@ -26,25 +26,25 @@ form.addEventListener("submit", function(e){
     button.innerHTML = "Sending...";
 
     emailjs.send(
-        "service_ktidi6t",
-        "template_8oddf7r",
+        "service_471ozob",
+        "template_j6pdrlr",
         {
             from_name: name,
             from_email: email,
             phone: phone,
-            service: service,
+            service: subject,
             message: message
         }
     )
     .then(function(){
 
         return emailjs.send(
-    "service_ktidi6t",
-    "template_fmup2nb",
+    "service_471ozob",
+    "template_j6pdrlr",
     {
         from_name: name,
         from_email: email,
-        service: service
+        service: subject
     });
 
         response.style.color = "#198754";
