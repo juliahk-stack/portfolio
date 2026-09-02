@@ -1,7 +1,7 @@
 
   // form submission
-  const form = document.getElementById("enquiryForm");
-const response = document.getElementById("responseMessage");
+  const form = document.getElementById("contactForm");
+const response = document.getElementById("message");
 const button = document.getElementById("submitBtn");
 
 form.addEventListener("submit", function(e){
