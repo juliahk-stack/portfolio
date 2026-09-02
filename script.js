@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // No backend is connected — this simulates a successful submission.
-    formStatus.textContent = 'Thank you. Your message has been received and will be reviewed shortly.';
+    formStatus.textContent = 'Thank you. Your message has been received and will be reviewed shortly. Use the whatsApp button if you dont get a reply within 5 minutes';
     formStatus.className = 'form-status success';
     form.reset();
   });
