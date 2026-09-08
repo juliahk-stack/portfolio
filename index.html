@@ -1148,73 +1148,31 @@ content="Professional website of Julia Hamilton Knox, a California attorney lice
 
 
       <!-- Consultation Form -->
-     html
-<form id="consultation-form">
-
-  <div class="form-group">
-    <label for="fullName">Full Name</label>
-    <input
-      type="text"
-      id="fullName"
-      name="full_name"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Telephone Number</label>
-    <input
-      type="tel"
-      id="phone"
-      name="phone"
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="subject">Subject</label>
-    <input
-      type="text"
-      id="subject"
-      name="subject"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea
-      id="message"
-      name="message"
-      rows="6"
-      required
-    ></textarea>
-  </div>
-
-  <p class="form-notice">
-    Important: Submitting this form does not create an attorney-client
-    relationship. Please do not send confidential, sensitive, or
-    time-critical information through this form.
-  </p>
-
-  <!-- CAPTCHA goes here -->
-
-  <button type="submit">
-    Submit Consultation Request
-  </button>
-
-  <p id="form-status" class="form-status"></p>
-
-</form>
+    <form class="contact-form reveal" id="id="consultation-form" novalidate >
+      
+      <div class="form-row"> <label for="fullName"> Full Name </label> 
+        <input type="text" id="fullName" 
+          name="fullName" autocomplete="name" required aria-required="true" 
+          aria-describedby="fullNameError" > 
+        <span class="form-error" id="fullNameError" role="alert" ></span> 
+      </div> <div class="form-row"> <label for="email"> Email Address </label> 
+        <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" aria-describedby="emailError" > 
+        <span class="form-error" id="emailError" role="alert" ></span> </div> <div class="form-row"> <label for="phone"> Telephone Number </label> 
+          <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phoneError" > 
+          <span class="form-error" id="phoneError" role="alert" ></span> </div> <div class="form-row"> 
+            <label for="subject"> Subject </label> 
+            <input type="text" id="subject" name="subject" required aria-required="true" aria-describedby="subjectError" > 
+            <span class="form-error" id="subjectError" role="alert" ></span> </div> <div class="form-row"> <label for="message"> Message </label> 
+              <textarea id="message" name="message" rows="6" required aria-required="true" aria-describedby="messageError" ></textarea> 
+              <span class="form-error" id="messageError" role="alert" ></span> </div> <!-- Consultation Disclaimer --> <div class="form-disclaimer"> 
+                <strong> Important: </strong> Submitting this form does not create an attorney-client relationship. Please do not send confidential,
+                sensitive, or time-critical information through this form. An attorney-client relationship is established only after appropriate review, 
+                conflict checking, and a written engagement agreement where applicable. </div> <!-- CAPTCHA Placeholder --> 
+      <div class="captcha-placeholder"> <span> CAPTCHA / Spam Protection </span> <small> Configure your preferred CAPTCHA provider before production. </small> 
+      </div> 
+      <button type="submit" id="submitBtn" class="btn btn-primary form-submit" > Submit Consultation Request </button> 
+      <p class="form-status" id="formStatus" role="status" aria-live="polite" ></p> 
+    </form>
 
 
     </div>
