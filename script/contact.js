@@ -1,70 +1,63 @@
+javascript
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("consultation-form");
 
-  // form submission
-  const form = document.getElementById("contactForm");
-const response = document.getElementById("message");
-const button = document.getElementById("submitBtn");
+  if (!form) return;
 
-form.addEventListener("submit", function(e){
+  const submitButton = form.querySelector('button[type="submit"]');
+  const formStatus = document.getElementById("form-status");
 
-    e.preventDefault();
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const service = document.getElementById("subject").value;
-    const message = document.getElementById("message").value.trim();
+    // Prevent multiple submissions
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
 
-    if(!name || !email || !phone || !subject || !message){
-
-        response.style.color="red";
-        response.innerHTML="Please complete all required fields.";
-        return;
-
+    if (formStatus) {
+      formStatus.textContent = "";
+      formStatus.className = "form-status";
     }
 
-    button.disabled = true;
-    button.innerHTML = "Sending...";
+    try {
+      const templateParams = {
+        full_name: document.getElementById("fullName").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        subject: document.getElementById("subject").value.trim(),
+        message: document.getElementById("message").value.trim()
+      };
 
-    emailjs.send(
+      // Send form through EmailJS
+      const response = await emailjs.send(
         "service_471ozob",
         "template_j6pdrlr",
-        {
-            from_name: name,
-            from_email: email,
-            phone: phone,
-            service: subject,
-            message: message
-        }
-    )
-    .then(function(){
+        templateParams
+      );
 
-        return emailjs.send(
-    "service_471ozob",
-    "template_j6pdrlr",
-    {
-        from_name: name,
-        from_email: email,
-        service: subject
-    });
+      console.log("EmailJS response:", response);
 
-        response.style.color = "#198754";
-        response.innerHTML = "✔ Thank you! Your enquiry has been sent successfully.";
+      if (formStatus) {
+        formStatus.textContent =
+          "Your consultation request has been sent successfully. The office will respond as appropriate.";
+        formStatus.classList.add("success");
+      }
 
-        form.reset();
+      form.reset();
 
-    })
-    .catch(function(error){
+    } catch (error) {
+      console.error("EmailJS error:", error);
 
-    console.log("EmailJS Error:", error);
+      if (formStatus) {
+        formStatus.textContent =
+          "Unable to send your request at this time. Please try again or contact the office directly.";
+        formStatus.classList.add("error");
+      }
 
-    response.style.color = "red";
-    response.innerHTML = error.text || "Something went wrong.";
-
-    })
-    .finally(function(){
-
-        button.disabled = false;
-        button.innerHTML = "Send Enquiry";
-    });
-
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit Consultation Request";
+    }
+  });
 });
+
