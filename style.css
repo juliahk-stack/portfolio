@@ -908,6 +908,9 @@ footer p{
   .whatsApp{ display: flex;
     flex-direction: column-reverse;  
   }
+   .nav-consultation{
+      margin-right:10px;
+   }
 
 }
 
