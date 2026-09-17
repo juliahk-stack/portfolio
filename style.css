@@ -899,6 +899,15 @@ footer p{
 
   .credentials-row { flex-direction: column; gap: 0.15rem; }
   .credentials-row dd { text-align: left; }
+   .nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .nav-toggle {
+  
+    margin-left: auto;height: 100px;
+}
 }
 
 @media (max-width: 480px) {
@@ -908,9 +917,13 @@ footer p{
   .whatsApp{ display: flex;
     flex-direction: column-reverse;  
   }
-   .nav-consultation{
-      margin-right:10px;
+   .nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
    }
-
+   .nav-toggle {
+  
+    margin-left: auto;height: 100px;
 }
-
+}
